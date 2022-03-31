@@ -1,5 +1,5 @@
 data "azurerm_resource_group" "myterraformresource" {
-  name     = "rg-central-training"
+  name = "rg-central-training"
   # location = "Central US"
 }
 
@@ -9,4 +9,9 @@ resource "azurerm_virtual_network" "myvirtualnetwork" {
   resource_group_name = data.azurerm_resource_group.myterraformresource.name
   location            = data.azurerm_resource_group.myterraformresource.location
   address_space       = ["10.0.0.0/16"]
+
+  subnet {
+    name           = "subnet1"
+    address_prefix = "10.0.1.0/24"
+  }
 }
