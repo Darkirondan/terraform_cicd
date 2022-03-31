@@ -11,12 +11,17 @@ resource "azurerm_virtual_network" "myvirtualnetwork" {
   address_space       = ["10.0.0.0/16"]
 
   subnet {
-    name           = "subnet1"
+    name           = "DanSubNet"
     address_prefix = "10.0.1.0/24"
   }
 
   subnet {
     name           = "sb-jorge"
     address_prefix = "10.0.2.0/24"
+  }
+
+  subnet {
+    name           = "sb-ctn"
+    address_prefix = "10.0.3.0/24"
   }
 }
