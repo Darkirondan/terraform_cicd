@@ -65,40 +65,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Import Secrets 1
+      - name: Vault Secrets
         uses: hashicorp/vault-action@v2.4.0
         with:
           url: http://40.77.51.162:8200
           tlsSkipVerify: true
-          token: \${{ secrets.VAULT_TOKEN }}
+          token: ${{ secrets.VAULT_TOKEN }}
           secrets: |
-            secret/data/ARM_SUBSCRIPTION_ID ARM_SUBSCRIPTION_ID
-
-      - name: Import Secrets 2
-        uses: hashicorp/vault-action@v2.4.0
-        with:
-          url: http://40.77.51.162:8200
-          tlsSkipVerify: true
-          token: \${{ secrets.VAULT_TOKEN }}
-          secrets: |
-            secret/data/ARM_CLIENT_ID ARM_CLIENT_ID
-
-      - name: Import Secrets 3
-        uses: hashicorp/vault-action@v2.4.0
-        with:
-          url: http://40.77.51.162:8200
-          tlsSkipVerify: true
-          token: \${{ secrets.VAULT_TOKEN }}
-          secrets: |
-            secret/data/ARM_CLIENT_SECRET ARM_CLIENT_SECRET
-
-      - name: Import Secrets 4
-        uses: hashicorp/vault-action@v2.4.0
-        with:
-          url: http://40.77.51.162:8200
-          tlsSkipVerify: true
-          token: \${{ secrets.VAULT_TOKEN }}
-          secrets: |
+            secret/data/ARM_SUBSCRIPTION_ID ARM_SUBSCRIPTION_ID;
+            secret/data/ARM_CLIENT_ID ARM_CLIENT_ID;
+            secret/data/ARM_CLIENT_SECRET ARM_CLIENT_SECRET;
             secret/data/ARM_TENANT_ID ARM_TENANT_ID
 
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
