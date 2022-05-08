@@ -72,7 +72,7 @@ jobs:
           tlsSkipVerify: true
           token: \${{ secrets.VAULT_TOKEN }}
           secrets: |
-            kv/secrets/ARM_SUBSCRIPTION_ID ARM_SUBSCRIPTION_ID
+            kv/data/secrets/ARM_SUBSCRIPTION_ID ARM_SUBSCRIPTION_ID
 
       - name: Import Secrets 2
         uses: hashicorp/vault-action@v2.4.0
@@ -81,7 +81,7 @@ jobs:
           tlsSkipVerify: true
           token: \${{ secrets.VAULT_TOKEN }}
           secrets: |
-            kv/secrets/ARM_CLIENT_ID ARM_CLIENT_ID
+            kv/data/secrets/ARM_CLIENT_ID ARM_CLIENT_ID
 
       - name: Import Secrets 3
         uses: hashicorp/vault-action@v2.4.0
@@ -90,7 +90,7 @@ jobs:
           tlsSkipVerify: true
           token: \${{ secrets.VAULT_TOKEN }}
           secrets: |
-            kv/secrets/ARM_CLIENT_SECRET ARM_CLIENT_SECRET
+            kv/data/secrets/ARM_CLIENT_SECRET ARM_CLIENT_SECRET
 
       - name: Import Secrets 4
         uses: hashicorp/vault-action@v2.4.0
@@ -99,7 +99,7 @@ jobs:
           tlsSkipVerify: true
           token: \${{ secrets.VAULT_TOKEN }}
           secrets: |
-            kv/secrets/ARM_TENANT_ID ARM_TENANT_ID
+            kv/data/secrets/ARM_TENANT_ID ARM_TENANT_ID
 
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
