@@ -68,7 +68,7 @@ jobs:
       - name: Vault Secrets
         uses: hashicorp/vault-action@v2.4.0
         with:
-          url: http://40.77.51.162:8200
+          url: ${{secrets.VAULT_URL}}
           tlsSkipVerify: true
           token: ${{ secrets.VAULT_TOKEN }}
           secrets: |
