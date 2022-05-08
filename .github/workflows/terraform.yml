@@ -52,11 +52,6 @@ on:
 jobs:
   terraform:
     name: "Terraform"
-    env:
-      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
     runs-on: ubuntu-latest
     environment: production
 
@@ -69,6 +64,42 @@ jobs:
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Import Secrets 1
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: http://40.77.51.162:8200/
+          tlsSkipVerify: true
+          token: \${{ secrets.VAULT_TOKEN }}
+          secrets: |
+            kv/secrets/ARM_SUBSCRIPTION_ID ARM_SUBSCRIPTION_ID
+
+      - name: Import Secrets 2
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: http://40.77.51.162:8200/
+          tlsSkipVerify: true
+          token: \${{ secrets.VAULT_TOKEN }}
+          secrets: |
+            kv/secrets/ARM_CLIENT_ID ARM_CLIENT_ID
+
+      - name: Import Secrets 3
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: http://40.77.51.162:8200/
+          tlsSkipVerify: true
+          token: \${{ secrets.VAULT_TOKEN }}
+          secrets: |
+            kv/secrets/ARM_CLIENT_SECRET ARM_CLIENT_SECRET
+
+      - name: Import Secrets 4
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: http://40.77.51.162:8200/
+          tlsSkipVerify: true
+          token: \${{ secrets.VAULT_TOKEN }}
+          secrets: |
+            kv/secrets/ARM_TENANT_ID ARM_TENANT_ID
 
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform

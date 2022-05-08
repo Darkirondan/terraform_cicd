@@ -28,4 +28,3 @@ echo "Creating the service principal! 🌚 "
 az ad sp create-for-rbac -n "replace this" --role Contributor --scopes /subscriptions/$SUB_ID/resourceGroups/$RG_NAME
 
 echo "Done! your service principal is successfully created! ✅ save this output on a safe and local place"
-
